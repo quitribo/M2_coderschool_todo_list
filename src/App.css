@@ -1,38 +1,171 @@
-.App {
-  text-align: center;
+/* ----------------------- */
+/* DEFAULT LAYOUT */
+/* ----------------------- */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  font-family: "DM Sans", sans-serif;
+  margin: 4rem auto;
+  padding: 2rem 3rem 3rem;
+  max-width: 500px;
+  background: #ff6666;
+  color: #fff;
+  box-shadow: 5px 5px 0px 0px rgba(100, 100, 100, 0.1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ----------------------- */
+/* HEADING */
+/* ----------------------- */
+
+.title {
+  font-weight: normal;
+  font-size: 2.6rem;
+  letter-spacing: 0.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title span {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.7rem;
+  margin-left: 3px;
+  margin-top: 0.2rem;
+}
+
+/* ----------------------- */
+/* LIST OF TASKS */
+/* ----------------------- */
+
+/* styling box frame */
+.task-list {
+  margin-top: 2.6rem;
+  list-style: none; /*   remove bullet point in front of each task */
+}
+
+/* styling layout of elements within every box frame */
+.task-list li {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin: 0 -3rem 4px;
+  padding: 1.1rem 3rem;
+  justify-content: space-between; /*   push text & checkbox to both ends of frame */
+  align-items: center; /*   align content vertically*/
+  background: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /*   color is blurry white NOT red, red is background of container */
+  transition: all 0.5s ease; /*   create dropping effect when remove item */
+  transform-origin: top left;
+}
+
+/* styling the effect of dropping box when removed*/
+.fall {
+  transform: rotate(
+    10deg
+  ); /*  when removed, box starts dropping at 10deg, opacity makes it disappeared */
+  opacity: 0;
+}
+
+/* styling x buttons */
+.task-list .actions {
+  flex-shrink: 0; /*  Not allow button to shrink when screen size changed */
+  padding-left: 0.7em;
+}
+
+.task-list .btn-action {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* styling checkbox symbol */
+input[type="checkbox"] {
+  /* increase its size */
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.task-list input[type="checkbox"] {
+  /* move checkbox vertically to the center of box*/
+  position: relative;
+  top: 0.3rem;
+}
+
+/* styling text label */
+.task-list .done .label {
+  /* create strike line crossing text label when check done */
+  opacity: 0.6; /* ONLY FOR element with class="done" -> seem like we have to append class in DOM */
+  text-decoration: line-through;
+}
+
+.task-list .label {
+  /* delay the above effect */
+  transition: opacity 0.2s linear;
+}
+
+/* ----------------------- */
+/* FILTER BUTTON */
+/* ----------------------- */
+
+/* styling Show incompleted tasks */
+.filter-wrapper {
+  margin-top: 1em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ----------------------- */
+/* FORM */
+/* ----------------------- */
+
+/* styling to do list box */
+.form {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap; /* The flexbox items will be distributed among multiple lines if needed */
+}
+
+.form label {
+  min-width: 100%;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.form input {
+  flex-grow: 1; /* extend form to entire container box */
+  border: none;
+  background: #f7f1f1;
+  padding: 0 1.5em;
+  font-size: initial;
+}
+
+/* styling "Add Item" button */
+.form button {
+  padding: 0 1.3rem;
+  border: none;
+  background: #ff6666;
   color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-left: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-out;
 }
 
-.App-link {
-  color: #61dafb;
+.form button:hover {
+  filter: brightness(110%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form input,
+.form button {
+  font-family: "Quicksand", sans-serif;
+  height: 3rem;
 }
